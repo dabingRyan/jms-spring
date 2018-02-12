@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="common.xml"/>
+
+    <bean id="consumerMessageListener" class="com.bing.jms.consumer.ConsumerMessageListener"/>
+
+    <bean id="jmsContanier" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="destination" ref="queueDestination"/><!-- 此处可换成主题模式 -->
+        <property name="messageListener" ref="consumerMessageListener"/>
+    </bean>
+
+    
+</beans>
